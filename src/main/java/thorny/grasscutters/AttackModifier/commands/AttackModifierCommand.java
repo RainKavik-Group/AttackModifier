@@ -43,14 +43,23 @@ public class AttackModifierCommand implements CommandHandler {
         
         // Currently will only damage the player
         switch (skillId) { // For Raiden
-            case 10521: // Basic attack
+            case 10521: // LeiShen-A
                 addedAttack = 42906105;
                 break;
-            case 10522: // Elemental skill
+            case 10522: // LeiShen-E
                 addedAttack = 42906108;
                 break;
-            case 10525: // Burst
+            case 10525: // LeiShen-Q
                 addedAttack = 42906119;
+                break;
+             case 10271: // NingGuang-A
+                addedAttack = 41027007;
+                break;
+             case 10591: // XiaoLu-A
+                addedAttack = 41022001;
+                break;
+             case 10481: // YanFei-A
+                addedAttack = 41016001;
                 break;
             default:
                 // Do nothing

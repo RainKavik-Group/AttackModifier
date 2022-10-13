@@ -4,15 +4,22 @@ import emu.grasscutter.command.Command;
 import emu.grasscutter.command.CommandHandler;
 import emu.grasscutter.game.entity.EntityGadget;
 import emu.grasscutter.game.player.Player;
+import emu.grasscutter.net.proto.VisionTypeOuterClass.VisionType;
 import emu.grasscutter.server.game.GameSession;
+import emu.grasscutter.server.packet.send.PacketSceneEntityDisappearNotify;
+import emu.grasscutter.utils.Position;
 import emu.grasscutter.command.Command.TargetRequirement;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
 // Command usage
 @Command(label = "attack", aliases = "at", usage = "[gadgetId]", targetRequirement = TargetRequirement.NONE)
 public class AttackModifierCommand implements CommandHandler {
+
+    static List<EntityGadget> activeGadgets = new ArrayList<>(); // Current gadgets
+    static List<EntityGadget> removeGadgets = new ArrayList<>(); // To be removed gadgets
 
     @Override
     public void execute(Player sender, Player targetPlayer, List<String> args) {
@@ -27,6 +34,7 @@ public class AttackModifierCommand implements CommandHandler {
         var pos = targetPlayer.getPosition();
         var rot = targetPlayer.getRotation();
         int thing = Integer.parseInt(args.get(0));
+        
 
         EntityGadget entity = new EntityGadget(scene, thing, pos, rot);
         scene.addEntity(entity);
@@ -34,54 +42,89 @@ public class AttackModifierCommand implements CommandHandler {
     }
 
     public static void addAttack(GameSession session, int skillId){
-        // Get position
-        var scene = session.getPlayer().getScene();
-        var pos = session.getPlayer().getPosition();
-        var rot = session.getPlayer().getRotation();
 
         int addedAttack = 0; // Default of no gadget
+        String attType = ""; // Default of no type
         
         // Currently will only damage the player
         switch (skillId) { // For Raiden
             case 10521: // LeiShen-A
                 addedAttack = 42906105;
+                attType = "basic";
                 break;
             case 10522: // LeiShen-E
                 addedAttack = 42906108;
+                attType = "elemental";
                 break;
             case 10525: // LeiShen-Q
                 addedAttack = 42906119;
+                attType = "burst";
                 break;
              case 10271: // NingGuang-A
                 addedAttack = 41027007;
+                attType = "burst";
                 break;
              case 10591: // XiaoLu-A
                 addedAttack = 41022001;
+                attType = "burst";
                 break;
              case 10481: // YanFei-A
                 addedAttack = 41016001;
+                attType = "burst";
                 break;
             default:
                 // Do nothing
                 break;
         }
 
+        // Get position
+        var scene = session.getPlayer().getScene();
+        Position pos = new Position(session.getPlayer().getPosition());
+        Position rot = new Position(session.getPlayer().getRotation());
+        var r = 3;
+
         // Try to set position in front of player to not get hit
-        var radius = Math.sqrt(1 * 0.2 / Math.PI);
-        var target = pos;
         double angle = rot.getY();
-        double r = Math.sqrt(Math.random() * radius * radius);
-        target.addX((float) (r * Math.cos(angle))).addZ((float) (r * Math.sin(angle)));
-        pos.set(target);
+        Position target = new Position(pos);
+
+        // Only change gadget pos for basic attack
+        if(attType.equals("basic")){
+            target.addX((float) (r * Math.sin(Math.PI/180 * angle)));
+            target.addZ((float) (r * Math.cos(Math.PI/180 * angle)));
+        }
         
         // Only spawn on match
         if(addedAttack != 0){
-            EntityGadget att = new EntityGadget(scene, addedAttack, pos, rot);
+            EntityGadget att = new EntityGadget(scene, addedAttack, target, rot);
 
+            // Silly way to track gadget alive time
+            int currTime = (int)(System.currentTimeMillis() - 1665393100);
+            att.setGroupId(currTime);
+            
+            activeGadgets.add(att);
             // Try to make it not hurt self
             scene.addEntity(att);
             att.setFightProperty(2001, 0);
             att.setFightProperty(1, 0);
+            
         }
-    }
-}
+        // Remove all gadgets when list not empty
+        if(!activeGadgets.isEmpty()){
+            for (EntityGadget gadget : activeGadgets) {
+
+                // When gadgets have lived for 15 sec
+                if((int)(System.currentTimeMillis() - 1665393100) > (gadget.getGroupId()+15000)){
+                    // Add to removal list
+                    removeGadgets.add(gadget);
+                    
+                    // Remove entity
+                    scene.removeEntity(gadget, VisionType.VISION_TYPE_REMOVE);
+                    scene.broadcastPacket(new PacketSceneEntityDisappearNotify(gadget, VisionType.VISION_TYPE_REMOVE));
+                }
+            }
+            // Remove gadgets and clean list
+            activeGadgets.removeAll(removeGadgets);
+            removeGadgets.clear();
+        } // if
+    } // addAttack
+} // AttackModifierCommand

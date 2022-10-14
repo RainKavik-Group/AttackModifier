@@ -1,10 +1,10 @@
 # Attack Modifier Basics
 
-## 编译方法
+## [原项目地址](https://github.com/NotThorny/AttackModifier/tree/master)
 
 ##  安装依赖
 * 手动安装
-* [grasscutter-1.3.1.jar](https://github.com/Grasscutters/Grasscutter/releases/download/v1.3.1/grasscutter-1.3.1.jar)
+* [点击下载“grasscutter-1.3.1.jar”](https://github.com/Grasscutters/Grasscutter/releases/download/v1.3.1/grasscutter-1.3.1.jar)
 
 * 下载完成后把`grasscutter-1.3.1.jar`复制成三份。
 
@@ -24,4 +24,4 @@
 * 编译`mvn clean compile`
 * 打包`mvn clean package`
 
-* [原项目地址](https://github.com/NotThorny/AttackModifier/tree/master)
+此项目只是增加了更多角色的魔改，无其他任何更改，有其他需求，请自行前往官方项目查看。

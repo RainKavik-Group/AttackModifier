@@ -3,7 +3,7 @@
 ## [原项目地址](https://github.com/NotThorny/AttackModifier/tree/master)
 
 ## 安装`MavenMaven`
-[点击查看MavenMaven安装方法](https://blog.csdn.net/qq_38190185/article/details/115921070),配置环境便后之后，即可以使用以下方法进行编译，自动安装失败的可以使用手动安装(本人就是没法使用自动安装。)
+[点击查看MavenMaven安装方法](https://blog.csdn.net/qq_38190185/article/details/115921070),配置环境变量之后，即可以使用以下方法进行编译，自动安装失败的可以使用手动安装(本人就是没法使用自动安装。)
 
 ##  安装依赖（任选其一）
 
@@ -29,8 +29,4 @@
 
 * 然后根目录执行`mvn package`，你可以在`\target`找到jar文件了。
 
-
-## 温馨提示
-* 当然，您编译之前需要先安装[点击查看MavenMaven安装方法](https://blog.csdn.net/qq_38190185/article/details/115921070).
-
-此项目只是增加了更多角色的魔改，无其他任何更改，有其他需求，请自行前往官方项目查看。
+#### * 此项目只是增加了更多角色的魔改，无其他任何更改，有其他需求，请自行前往官方项目查看。

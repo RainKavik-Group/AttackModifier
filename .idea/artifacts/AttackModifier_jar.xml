@@ -1,0 +1,11 @@
+<component name="ArtifactManager">
+  <artifact name="AttackModifier:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/AttackModifier_jar</output-path>
+    <root id="root">
+      <element id="archive" name="AttackModifier.jar">
+        <element id="module-output" name="AttackModifier" />
+      </element>
+      <element id="library" level="project" name="Maven: xyz.grasscutters:grasscutter:1.3.1" />
+    </root>
+  </artifact>
+</component>

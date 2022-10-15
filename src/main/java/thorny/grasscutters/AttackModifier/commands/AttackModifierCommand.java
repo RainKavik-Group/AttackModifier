@@ -95,7 +95,7 @@ public class AttackModifierCommand implements CommandHandler {
                     case 2 -> addedAttack = 42906119; // Burst
                 }
             }
-            // Dummy example case for additional avatars
+
             case 10000063 -> { // Shenhe
                 switch (usedAttack) {
                     default -> addedAttack = -1;
@@ -103,26 +103,109 @@ public class AttackModifierCommand implements CommandHandler {
                     case 1 -> addedAttack = 41069021; // Elemental skill
                     case 2 -> addedAttack = 41022001; // Burst
                 }
-            } // Shenhe
+            }
 
-                        case 10000027 -> { // Niangguang
+            case 10000047 -> { // wanye
+                switch (usedAttack) {
+                    default -> addedAttack = -1;
+                    case 0 -> addedAttack = 42509003; // Normal attack
+                    case 1 -> addedAttack = 41047004; // Elemental skill
+                    case 2 -> addedAttack = 42901066; // Burst
+                }
+            }
+
+            case 10000033 -> { // gongzi
+                switch (usedAttack) {
+                    default -> addedAttack = -1;
+                    case 0 -> addedAttack = 42903204; // Normal attack
+                    case 1 -> addedAttack = 42903214; // Elemental skill
+                    case 2 -> addedAttack = 42903208; // Burst
+                }
+            }
+
+            case 10000042 -> { // keqing
+                switch (usedAttack) {
+                    default -> addedAttack = -1;
+                    case 0 -> addedAttack = 42906105; // Normal attack
+                    case 1 -> addedAttack = 42906125; // Elemental skill
+                    case 2 -> addedAttack = 42906008; // Burst
+                }
+            }
+
+            case 10000032 -> { // bannite
+                switch (usedAttack) {
+                    default -> addedAttack = -1;
+                    case 0 -> addedAttack = 42905210; // Normal attack
+                    case 1 -> addedAttack = 42905202; // Elemental skill
+                    case 2 -> addedAttack = 42905212; // Burst
+                }
+            }
+
+            case 10000060 -> { // yelan
+                switch (usedAttack) {
+                    default -> addedAttack = -1;
+                    case 0 -> addedAttack = 41033009; // Normal attack
+                    case 1 -> addedAttack = 42004607; // Elemental skill
+                    case 2 -> addedAttack = 41066002; // Burst
+                }
+            }
+
+            case 10000016 -> { // diluc
+                switch (usedAttack) {
+                    default -> addedAttack = -1;
+                    case 0 -> addedAttack = 41023004; // Normal attack
+                    case 2 -> addedAttack = 42602021; // Burst
+                }
+            }
+
+            case 10000036 -> { // chongyun
+                switch (usedAttack) {
+                    default -> addedAttack = -1;
+                    case 0 -> addedAttack = 42304051; // Normal attack
+                    case 1 -> addedAttack = 42904044; // Elemental skill
+                    case 2 -> addedAttack = 42904047; // Burst
+                }
+            }
+
+            case 10000030 -> { // zhongli
+                switch (usedAttack) {
+                    default -> addedAttack = -1;
+                    case 0 -> addedAttack = 42004208; // Normal attack
+                    case 1 -> addedAttack = 42004223; // Elemental skill
+                    case 2 -> addedAttack = 42904048; // Burst
+                }
+            }
+
+            case 10000051 -> { // youla
+                switch (usedAttack) {
+                    default -> addedAttack = -1;
+                    case 0 -> addedAttack = 42902017; // Normal attack
+                    case 1 -> addedAttack = 42509013; // Elemental skill
+                    case 2 -> addedAttack = 42509005; // Burst
+                }
+            }
+
+            case 10000027 -> { // Niangguang
                 switch (usedAttack) {
                     default -> addedAttack = -1;
                     case 0 -> addedAttack = 41027007; // Normal attack
                 }
-            } // Niangguang
-                        case 10000048 -> { // YanFei
+            }
+
+            case 10000048 -> { // YanFei
                 switch (usedAttack) {
                     default -> addedAttack = -1;
                     case 0 -> addedAttack = 41016001; // Normal attack
                 }
-            } // YanFei
-                        case 10000059 -> { // XiaoLu
+            }
+
+            case 10000059 -> { // XiaoLu
                 switch (usedAttack) {
                     default -> addedAttack = -1;
-                    case 0 -> addedAttack = 41022001; // Normal attack
+                    case 0 -> addedAttack = 42004122; // Normal attack
+                    case 2 -> addedAttack = 41022001; // Burst
                 }
-            } // XiaoLu
+            }
         }
 
         // Get position

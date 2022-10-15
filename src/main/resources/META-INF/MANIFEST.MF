@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+Main-Class: main class thorny.grasscutters.AttackModifier.AttackModifier
+Class-Path: grasscutter-1.3.1.jar
+
